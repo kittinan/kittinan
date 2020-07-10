@@ -1,7 +1,5 @@
 ### Hi there 👋
 
-<img src="https://picsum.photos/900/600" />
-
 <!--
 **kittinan/kittinan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
