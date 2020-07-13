@@ -1,4 +1,5 @@
-### Hi there 👋
+
+![Kittinan](https://raw.githubusercontent.com/kittinan/kittinan/master/kittinan_ph_logo.png)
 
 <!--
 **kittinan/kittinan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
