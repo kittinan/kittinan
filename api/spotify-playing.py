@@ -82,12 +82,12 @@ def make_svg(data):
 
     if data == {}:
         content = """
-            <div class="playing">Nothing playing on Splotify</div>
+            <div class="playing">Nothing playing on Spotify</div>
         """
         return template.format(content)
 
     content = """
-        <div class="playing">Now playing on Splotify</div>
+        <div class="playing">Now playing on Spotify</div>
         <br />
         <div class="artist">{}</div>
         <div class="song">{}</div>
