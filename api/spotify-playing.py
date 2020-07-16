@@ -54,12 +54,13 @@ def get_now_playing():
 def get_svg_template():
 
     svg = """
-        <svg width="200" height="275" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <foreignObject width="200" height="275">
+        <svg width="200" height="320" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <foreignObject width="200" height="320">
                 <div xmlns="http://www.w3.org/1999/xhtml">
                     <style>
                         .playing {{ font: bold 18px serif; color: red; text-align: center; }}
                         .artist {{ font: bold 18px serif; text-align: center; }}
+                        .song {{ font: 16px serif; text-align: center; }}
                     </style>
                     {}
                 </div>
@@ -89,6 +90,7 @@ def make_svg(data):
         <div class="playing">Now playing on Splotify</div>
         <br />
         <div class="artist">{}</div>
+        <div class="song">{}</div>
         <br />
         <a href="{}" target="_BLANK">
             <img src="data:image/png;base64, {}" height="200"/>
@@ -104,9 +106,9 @@ def make_svg(data):
     print(item["album"]["images"][0]["url"])
     """
 
-    img = load_image_b64(item["album"]["images"][0]["url"])
+    img = load_image_b64(item["album"]["images"][1]["url"])
     content_rendered = content.format(
-        item["artists"][0]["name"], item["external_urls"]["spotify"], img,
+        item["artists"][0]["name"], item["name"], item["external_urls"]["spotify"], img,
     )
 
     return template.format(content_rendered)
