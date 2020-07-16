@@ -70,6 +70,7 @@ def get_svg_template():
                         div {{font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;}}
                         .container {{background-color: #121212; border-radius: 10px; padding: 10px 10px}}
                         .playing {{ font-weight: bold; color: #53b14f; text-align: center; display: flex; justify-content: center; align-items: center;}}
+                        .not-play {{color: #ff1616;}}
                         .artist {{ font-weight: bold; font-size: 20px; color: #fff; text-align: center; margin-top: 5px; }}
                         .song {{ font-size: 16px; color: #b3b3b3; text-align: center; margin-top: 5px; margin-bottom: 15px; }}
                         .logo {{ margin-left: 5px; margin-top: 5px; }}
@@ -95,7 +96,7 @@ def make_svg(data):
 
     if data == {}:
         content = """
-            <div class="playing">Nothing playing on Spotify</div>
+            <div class="playing not-play">Nothing playing on Spotify</div>
         """
         return template.format(content)
 
