@@ -8,7 +8,7 @@ import os
 
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_SECRET_ID = os.getenv("SPOTIFY_SECRET_ID")
-SPOTIFY_REFRESH_TOKN = os.getenv("SPOTIFY_REFRESH_TOKN")
+SPOTIFY_REFRESH_TOKEN = os.getenv("SPOTIFY_REFRESH_TOKN")
 
 SPOTIFY_URL_REFRESH_TOKEN = "https://accounts.spotify.com/api/token"
 SPOTIFY_URL_NOW_PLAYING = "https://api.spotify.com/v1/me/player/currently-playing"
@@ -25,7 +25,7 @@ def refresh_token():
 
     data = {
         "grant_type": "refresh_token",
-        "refresh_token": SPOTIFY_REFRESH_TOKN,
+        "refresh_token": SPOTIFY_REFRESH_TOKEN,
     }
 
     headers = {"Authorization": "Basic {}".format(get_authorization())}
