@@ -121,8 +121,10 @@ def make_svg(data):
     """
 
     img = load_image_b64(item["album"]["images"][1]["url"])
+    artist_name = item["artists"][0]["name"].replace("&", "&amp;")
+    song_name = item["name"].replace("&", "&amp;")
     content_rendered = content.format(
-        item["artists"][0]["name"], item["name"], item["external_urls"]["spotify"], img,
+        artist_name, song_name, item["external_urls"]["spotify"], img,
     )
 
     return template.format(content_rendered)
