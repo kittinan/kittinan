@@ -87,7 +87,7 @@ def get_svg_template():
                         .artist {{ font-weight: bold; font-size: 20px; color: #fff; text-align: center; margin-top: 5px; }}
                         .song {{ font-size: 16px; color: #b3b3b3; text-align: center; margin-top: 5px; margin-bottom: 15px; }}
                         .logo {{ margin-left: 5px; margin-top: 5px; }}
-                        .cover {{ border-radius: 5px; margin-top: 10px; }}
+                        .cover {{ border-radius: 5px; margin-top: 9px; }}
                         #bars {{
                             height: 30px;
                             margin: -20px 0 0 0px;
