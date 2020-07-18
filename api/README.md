@@ -3,13 +3,14 @@
 - First go to [developer.spotify.com](https://developer.spotify.com/)'s dashboard
 - Get Client ID and Client Secret from a page
 - Add `http://localhost/callback` in Edit Settings in Dashboard
-- Put this URL 
+- Put this URL
 
 ```
-https://accounts.spotify.com/authorize?client_id={SPOTIFY_CLIENT_ID}&response_type=code&scope=user-read-currently-playing&redirect_uri=http://localhost/callback/
+https://accounts.spotify.com/authorize?client_id={SPOTIFY_CLIENT_ID}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=http://localhost/callback/
 ```
 
- on the browser, you will get URL something like `http://localhost/callback/?code={CODE}  back
+on the browser, you will get URL something like `http://localhost/callback/?code={CODE}`
+
 - Then, grab Base64 encode of `{SPOTIFY_CLIENT_ID}:{SPOTIFY_CLIENT_SECRET}` and `{CODE}` to request refresh token using:
 
 ```sh
