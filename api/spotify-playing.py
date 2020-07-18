@@ -21,8 +21,10 @@ SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_SECRET_ID = os.getenv("SPOTIFY_SECRET_ID")
 SPOTIFY_REFRESH_TOKEN = os.getenv("SPOTIFY_REFRESH_TOKEN")
 
+# scope user-read-currently-playing,user-read-recently-played
 SPOTIFY_URL_REFRESH_TOKEN = "https://accounts.spotify.com/api/token"
 SPOTIFY_URL_NOW_PLAYING = "https://api.spotify.com/v1/me/player/currently-playing"
+SPOTIFY_URL_RECENTLY_PLAY = "https://api.spotify.com/v1/me/player/recently-played?limit=10"
 
 LATEST_PLAY = None
 app = Flask(__name__)
@@ -46,6 +48,21 @@ def refresh_token():
     repsonse_json = response.json()
 
     return repsonse_json["access_token"]
+
+
+def get_recently_play():
+
+    token = refresh_token()
+
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = requests.get(SPOTIFY_URL_RECENTLY_PLAY, headers=headers)
+
+    if response.status_code == 204:
+        return {}
+
+    repsonse_json = response.json()
+    return repsonse_json
 
 
 def get_now_playing():
@@ -84,7 +101,6 @@ def load_image_b64(url):
 
 
 def make_svg(data):
-    global LATEST_PLAY
 
     height = 445
     num_bar = 75
@@ -92,21 +108,17 @@ def make_svg(data):
     content_bar = "".join(["<div class='bar'></div>" for i in range(num_bar)])
     css_bar = generate_css_bar(num_bar)
 
-    if data == {} and LATEST_PLAY is not None:
+    if data == {}:
         # Use application memory cache
-        data = LATEST_PLAY
-        title_text = "Latest play"
+        title_text = "Recently play"
         content_bar = ""
-    elif data == {}:
 
-        # Nothing playing
-        height = 50
-        rendered_data = {
-            "height": height,
-        }
-        return render_template("spotify.html.j2", **rendered_data)
-
-    item = data["item"]
+        recent_plays = get_recently_play()
+        size_recent_play = len(recent_plays["items"])
+        idx = random.randint(0, size_recent_play - 1)
+        item = recent_plays["items"][idx]["track"]
+    else:
+        item = data["item"]
 
     img = load_image_b64(item["album"]["images"][1]["url"])
     artist_name = item["artists"][0]["name"].replace("&", "&amp;")
