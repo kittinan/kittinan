@@ -26,7 +26,7 @@ SPOTIFY_URL_REFRESH_TOKEN = "https://accounts.spotify.com/api/token"
 SPOTIFY_URL_NOW_PLAYING = "https://api.spotify.com/v1/me/player/currently-playing"
 SPOTIFY_URL_RECENTLY_PLAY = "https://api.spotify.com/v1/me/player/recently-played?limit=10"
 
-LATEST_PLAY = None
+
 app = Flask(__name__)
 
 
@@ -109,7 +109,7 @@ def make_svg(data):
     css_bar = generate_css_bar(num_bar)
 
     if data == {}:
-        # Use application memory cache
+        # Get recently play
         title_text = "Recently play"
         content_bar = ""
 
@@ -121,8 +121,8 @@ def make_svg(data):
         item = data["item"]
 
     img = load_image_b64(item["album"]["images"][1]["url"])
-    artist_name = item["artists"][0]["name"].replace("&", "&amp;")
-    song_name = item["name"].replace("&", "&amp;")
+    artist_name = item["artists"][0]["name"]
+    song_name = item["name"]
     url = item["external_urls"]["spotify"]
 
     rendered_data = {
@@ -143,13 +143,9 @@ def make_svg(data):
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
-    global LATEST_PLAY
+
     data = get_now_playing()
     svg = make_svg(data)
-
-    # cache lastest data
-    if data != {}:
-        LATEST_PLAY = data
 
     resp = Response(svg, mimetype="image/svg+xml")
     resp.headers["Cache-Control"] = "s-maxage=1"

@@ -1,4 +1,4 @@
-# How to get Spotify API
+# How to get refresh_token from Spotify API
 
 - First go to [developer.spotify.com](https://developer.spotify.com/)'s dashboard
 - Get Client ID and Client Secret from a page
@@ -28,5 +28,8 @@ SPOTIFY_REFRESH_TOKEN='____'
 into `.env` file for development
 
 - Run `python spotify-playing.py` to server via `http://localhost:5000`
+
+# Deployment
+- Use Vercel serverless function https://vercel.com/docs/v2/serverless-functions/introduction
 
 Original document by @titipata
