@@ -2,6 +2,8 @@
 
 ![Kittinan's github stats](https://github-readme-stats.vercel.app/api?username=kittinan&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
+[![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=21jsj34glwsu3dboqjpqzm2sa&cover_image=true&theme=natemoo-re)](https://github.com/kittinan/spotify-github-profile)
+
 
 [![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=21jsj34glwsu3dboqjpqzm2sa)](https://github.com/kittinan/spotify-github-profile)
 
